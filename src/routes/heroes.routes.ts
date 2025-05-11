@@ -43,17 +43,17 @@ const heroesRouter = Router();
  * que por sua vez cria o herói e o armazena via HeroRepository.
  */
 
-heroesRouter.post('/', (req, res) => {
+heroesRouter.post('/create', (req, res) => {
   const { name, power } = req.body;
 
   if (!name || !power) {
     return res.status(400).json({
-      message: 'Campos "name" e "power" são obrigatórios',
+      message: 'Campos "User" e "Text" são obrigatórios',
     });
   }
 
-  const hero = HeroService.create(name, power);
-  return res.status(201).json(hero);
+  const Hero = HeroService.create(name, power);
+  return res.status(201).json(Hero);
 });
 
 // ========================================
@@ -68,7 +68,7 @@ heroesRouter.post('/', (req, res) => {
  * que busca os dados no HeroRepository.
  */
 
-heroesRouter.get('/', (req, res) => {
+heroesRouter.get('/all-heroes', (req, res) => {
   const heroes = HeroService.listAll();
   return res.json(heroes);
 });
@@ -82,7 +82,7 @@ heroesRouter.get('/', (req, res) => {
  * Caso não encontre, retorna erro 404.
  */
 
-heroesRouter.get('/:id', (req, res) => {
+heroesRouter.get('/find-hero:id', (req, res) => {
   const hero = HeroService.findById(req.params.id);
 
   if (!hero) {
@@ -107,7 +107,7 @@ heroesRouter.get('/:id', (req, res) => {
  * que verifica se o herói existe e, se sim, atualiza os dados no HeroRepository.
  */
 
-heroesRouter.put('/:id', (req, res) => {
+heroesRouter.put('/update-hero:id', (req, res) => {
   const { name, power } = req.body;
 
   if (!name || !power) {
@@ -137,7 +137,7 @@ heroesRouter.put('/:id', (req, res) => {
  * Se o herói não for encontrado, retorna erro 404.
  */
 
-heroesRouter.delete('/:id', (req, res) => {
+heroesRouter.delete('/delete-hero:id', (req, res) => {
   const deleted = HeroService.delete(req.params.id);
 
   if (!deleted) {
