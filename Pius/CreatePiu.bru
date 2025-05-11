@@ -1,0 +1,18 @@
+meta {
+  name: CreatePiu
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3333/pius/create
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "texto": "Front é o krl",
+    "UserName": "Sempre estive certo"
+  }
+}

@@ -44,7 +44,7 @@ UsersRouter.post('/create', (req, res) => {
  * que busca os dados no HeroRepository.
  */
 
-UsersRouter.get('/all-Users', (req, res) => {
+UsersRouter.get('/all-users', (req, res) => {
   const users = UserService.listAll();
   return res.json(users);
 });
@@ -58,7 +58,7 @@ UsersRouter.get('/all-Users', (req, res) => {
  * Caso não encontre, retorna erro 404.
  */
 
-UsersRouter.get('/find-user:id', (req, res) => {
+UsersRouter.get('/find-user/:id', (req, res) => {
   const user = UserService.findById(req.params.id);
 
   if (!user) {
@@ -83,7 +83,7 @@ UsersRouter.get('/find-user:id', (req, res) => {
  * que verifica se o herói existe e, se sim, atualiza os dados no HeroRepository.
  */
 
-UsersRouter.put('/update-user:id', (req, res) => {
+UsersRouter.put('/update-user/:id', (req, res) => {
   const { name, email, senha, UserName, celular } = req.body;
 
   if (!name || !name || !email || !senha || !UserName || !celular) {
@@ -120,7 +120,7 @@ UsersRouter.put('/update-user:id', (req, res) => {
  * Se o herói não for encontrado, retorna erro 404.
  */
 
-UsersRouter.delete('/delete-user:id', (req, res) => {
+UsersRouter.delete('/delete-user/:id', (req, res) => {
   const deleted = UserService.delete(req.params.id);
 
   if (!deleted) {

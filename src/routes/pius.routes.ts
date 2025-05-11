@@ -61,7 +61,7 @@ PiusRouter.get('/all-Pius', (req, res) => {
  * Se o herói não for encontrado, retorna erro 404.
  */
 
-PiusRouter.delete('/delete-user:id', (req, res) => {
+PiusRouter.delete('/delete-piu/:id', (req, res) => {
   const deleted = PiuService.delete(req.params.id);
 
   if (!deleted) {
